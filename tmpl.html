@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ .Title }}</title>
+    <script src="/assets/main.js"></script>
+    <link href="/assets/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Index</a></li>
+        <li><a href="/help">Help</a></li>
+        {{ if .LoggedIn -}}
+        <li><a href="/account">Account</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {{- else -}}
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Log In</a></li>
+        {{- end }}
+      </ul>
+    </nav>
+    <main>
+      <h1>Photos of Dogs</h2>
+      {{ range .Photos -}}
+      <img class="dog-picture"
+           src="/media/{{ .Filename }}"
+           alt="{{ .Alt }}" />
+      {{ end -}}
+    </main>
+    <footer>
+      <a href="/contact">Contact me!</a>
+    </footer>
+  </body>
+</html>
